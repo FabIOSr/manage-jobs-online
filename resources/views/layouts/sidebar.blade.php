@@ -1,4 +1,4 @@
-<div class="col-md-2 mb-2">
+<div wire:ignore class="col-md-2 mb-2">
     <div class="list-group">
         <a wire:navigate href="{{ route('home') }}" class="list-group-item list-group-item-action {{ request()->routeIs('home') ? 'active': '' }}" aria-current="true">
           Painel Home

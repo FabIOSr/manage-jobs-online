@@ -10,18 +10,22 @@ class Company extends Model
     use HasFactory;
 
     protected $fillable = [
-        'document',
-        'alias_name',
-        'social_name',
-        'zipcode',
-        'street',
-        'neigborhood',
         'city',
         'state',
+        'owner',
+        'email',
         'number',
         'status',
+        'street',
+        'zipcode',
+        'added_by',
+        'document',
+        'due_date',
         'company_id',
-        'addSSSed_by',
-        'updated_by'
+        'complement',
+        'updated_by',
+        'alias_name',
+        'social_name',
+        'neigborhood',
     ];
 }

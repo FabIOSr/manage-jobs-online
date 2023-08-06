@@ -2,117 +2,164 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center g-2">
-            @includeIf('layouts.sidebar')
-            <div class="col-md-10">
-                
-                <div class="row border-bottom mb-2 pb-2 mx-1">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-6">
-                        @includeIf('_success')
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <a href="{{ route('companies') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Retornar para Lista</a>
-                    </div>
-                </div>
-
-                <div class="row justify-content-start g-3">
-                    <div class="col-md-8 ps-3">
-                        <form name="company" id="company" method="POST" autocomplete="off" action="{{ route('companies.store') }}" autocomplete="off">
-                            @csrf
-                            <div class="row g-2">
-                                <div class="col-md-4">
-                                    <label for="document" class="form-labelmb-0">CNPJ</label>
-                                    <input name="document" type="text" class="document form-control form-control-sm" value="{{ old('document') }}" autocomplete="off">
-                                </div>
-                                <div class="col-md-8">
-                                    <label for="social_name" class="form-label mb-0">Razão Social</label>
-                                    <input name="social_name" type="text" class="form-control form-control-sm" value="{{ old('social_name') }}" autocomplete="off">
-                                </div>
-                                <div class="col-9">
-                                    <label for="alias_name" class="form-label mb-0">Nome Fantasia</label>
-                                    <input name="alias_name" type="text" class="form-control form-control-sm" value="{{ old('alias_name') }}" autocomplete="off">
-                                </div>
-                                <div class="col-3">
-                                    <label for="zipcode" class="form-label mb-0">Cep</label>
-                                    <input name="zipcode" type="text" class="form-control form-control-sm" value="{{ old('zipcode') }}" autocomplete="off">
-                                </div>
-                                <div class="col-10">
-                                    <label for="street" class="form-label mb-0">Endereço</label>
-                                    <input name="street" type="text" class="form-control form-control-sm" id="street" value="{{ old('street') }}" autocomplete="off">
-                                </div>
-                                <div class="col-2">
-                                    <label for="number" class="form-label mb-0">Número</label>
-                                    <input name="number" type="text" class="form-control form-control-sm" value="{{ old('number') }}" autocomplete="off">
-                                </div>
-                                <div class="col-10">
-                                    <label for="complement" class="form-label mb-0">Complemento</label>
-                                    <input name="complement" type="text" class="form-control form-control-sm" value="{{ old('complement') }}" autocomplete="off">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="neighborhood" class="form-label mb-0">Bairro</label>
-                                    <input name="neighborhood" type="text" class="form-control form-control-sm" value="{{ old('neighborhood') }}" autocomplete="off">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="city" class="form-label mb-0">Cidade</label>
-                                    <input name="city" type="text" class="form-control form-control-sm" value="{{ old('city') }}" autocomplete="off">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="state" class="form-label mb-0">Estado</label>
-                                    <input name="state" type="text" class="form-control form-control-sm" value="{{ old('state') }}" autocomplete="off">
-                                </div>
-                                <div class="col-md-9">
-                                    <label for="email" class="form-label mb-0">E-mail responsável</label>
-                                    <input name="email" type="email" class="form-control form-control-sm" value="{{ old('email') }}" autocomplete="off">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="date_due" class="form-label mb-0">Data Vencimento</label>
-                                    <select id="date_due" class="form-select form-select-sm">
-                                      <option selected>Choose...</option>
-                                      <option value="5">5</option>
-                                      <option value="8">8</option>
-                                      <option value="10">10</option>
-                                      <option value="12">12</option>
-                                      <option value="15">15</option>
-                                      <option value="18">18</option>
-                                      <option value="20">20</option>
-                                    </select>
-                                  </div>
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input name="check" class="form-check-input" type="checkbox" id="gridCheck" @if(old('check')) checked @endif>
-                                        <label class="form-check-label" for="gridCheck">
-                                            Estou ciente que as informações acima são veridicas.
-                                            <p class="pb-0 mb-0">E ao clicar em "<b>Salvar Registro</b>" pode me gerar uma cobrança em forma de boleto</p>
-                                            <p class="pb-0 mb-0">com o vencimento estipulado na data escolhida.</p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-sm float-end">Salvar Registro</button>
-                                  </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="col-md-4">
-                        @if ($errors->any())
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="text-danger fw-bold">Ops. Atenção aos campos obrigatórios!</h5>
-
-                                  <ol>
-                                    @foreach ($errors->all() as $error)
-                                    <li class="text-danger">{{ $error }}</li>
-                                    @endforeach
-                                  </ol>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        @livewire('company.create')
     </div>
 @endsection
+
+{{-- @push('_js')
+    <script type="module">
+        $(function(){
+
+            function clearFields(){
+                $("input[name='street']").val('');
+                $("input[name='complement']").val('');
+                $("input[name='state']").val('');
+                $("input[name='city']").val('');
+                $("input[name='neighborhood']").val('');
+
+            }
+
+            function searchZipcode(url){
+                $.getJSON(url , function (data) {
+
+                    if (!("erro" in data)) {
+                        $("input[name='street']").val(data.logradouro);
+                        $("input[name='complement']").val(data.complemento);
+                        $("input[name='neighborhood']").val(data.bairro);
+                        $("input[name='city']").val(data.localidade);
+                        $("input[name='state']").val(data.uf);
+                        $("input[name='number']").trigger('focus')
+                    } else {
+                        alert("CEP não encontrado.");
+                        $("input[name='zipcode']").val('');
+                        clearFields();
+                        $("input[name='zipcode']").trigger('focus');
+                    }
+                });
+            }
+
+            $('input[name="zipcode"]').blur(function(){
+                
+                let zipcode = $(this).val().replace(/[^0-9]+/g,'');
+                const url = `https://viacep.com.br/ws/${zipcode}/json/`;
+                
+                clearFields();
+
+                searchZipcode(url)
+                
+            });
+            
+
+            $('#company').submit(function(e){                
+                
+                // $('.form-control,.form-select').each(function(k,v){
+                //     console.log(v);
+
+                //     if($(this).attr('name') !='complement'){
+                //         if($("input[name="+ $(this).attr('name')+ "]").val()==''){
+                //             $("input[name="+ $(this).attr('name')+ "]").trigger( "focus" ); 
+                //             return false
+                //         }
+                //     }
+                // })
+
+                
+                if($('input[name="document"]').val()==''){
+                    $('input[name="document"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="social_name"]').val()==''){
+                    $('input[name="social_name"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="alias_name"]').val()==''){
+                    $('input[name="alias_name"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="zipcode"]').val()==''){
+                    $('input[name="zipcode"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="street"]').val()=='') {
+                    $('input[name="street"]').trigger( "focus" ); 
+                    return false
+                }
+                
+                if($('input[name="number"]').val()=='') {
+                    $('input[name="number"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="neighborhood"]').val()=='') {
+                    $('input[name="neighborhood"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="city"]').val()=='') {
+                    $('input[name="city"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="state"]').val()=='') {
+                    $('input[name="state"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="email"]').val()=='') {
+                    $('input[name="email"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('select[name="due_date"]').val()=='') {
+                    $('select[name="due_date"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('.form-check-input').is(':checked')){
+                    console.log('aceite ok, check');
+                }else{
+                    $('.form-check-input').trigger( "focus" ); 
+                    alert('Marque o check do aceite dos termos');
+                    return false
+                }
+                
+                // e.preventDefault();
+                // $('.errors').addClass('d-none');               
+                // $('.spinner-border').removeClass('d-none');
+                // $('.btn-primary').attr('disabled',true);
+                
+                // var form =$(this);
+                // var url = form.attr('action');
+                // var method = form.attr('method');
+                // var data = form.serialize();
+                // $.ajax({
+                //     method:method,
+                //     url:url,
+                //     data:data,
+                //     success:function(response){
+                //         console.log(response.redirect);
+                //         $('.spinner-border').addClass('d-none');
+                //         $('.btn-primary').attr('disabled',false);
+                //         window.location.href = response.redirect
+                //     },
+                //     error:function(xhr,status, error){
+                //         var responseJson = JSON.parse(xhr.responseText);
+                //         var message = responseJson.message;
+                //         var errors = responseJson.errors;
+                //         $('.errors').removeClass('d-none')
+                //         $('.spinner-border').addClass('d-none');
+                //         $('.btn-primary').attr('disabled',false);
+                //         $('#li').html('');
+                //         $.each(errors, function(key, value){
+                //             $('#li').append('<li class="text-danger">'+value+'</li>');
+                //         });
+                //     }
+                // })
+            })
+        })
+    </script>
+@endpush --}}

@@ -23,6 +23,12 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+window.onload = function removeAlert(){
+    let messageBox = bootstrap.Alert.getOrCreateInstance('#alert');
+    setTimeout(() => {
+        messageBox.close();
+    }, 2000);
+}
 
 // import Echo from 'laravel-echo';
 

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Jobs\CompanyController;
+use App\Http\Controllers\Jobs\ExperienceController;
+use App\Http\Middleware\Authenticate;
+use App\Livewire\Jobs\Experiences\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +21,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/experience-level', function () {
-    return view('experience/index');
-})->name('experiences');
+Route::middleware(Authenticate::class)->group(function(){
+
+    Route::get('companies', [CompanyController::class, 'index'])->name('companies');
+    Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
+    Route::get('companies-all', [CompanyController::class, 'getAllCompany'])->name('companies.all');
+    Route::post('companies', [CompanyController::class, 'store'])->name('companies.store');
+
+    //EXPERIENCES
+    Route::post('/experiences/store', [ExperienceController::class,'store'])->name('experiences.store');
+
+
+    Route::get('/experience-level',Index::class)->name('experiences');
+
+});
+
+// Route::get('/experience-level',[ExperienceController::class, 'index'])->name('experiences');
+Route::get('/experience-level',Index::class)->name('experiences');
 
 Route::get('/contract-types', function () {
     return view('contract/index');
@@ -50,7 +67,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('companies', [CompanyController::class, 'index'])->name('companies');
-Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
-Route::get('companies-all', [CompanyController::class, 'getAllCompany'])->name('companies.all');
-Route::post('companies', [CompanyController::class, 'store'])->name('companies.store');

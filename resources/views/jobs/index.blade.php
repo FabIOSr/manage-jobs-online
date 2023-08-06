@@ -6,13 +6,13 @@
         @includeIf('layouts.sidebar')
         <div class="col-md-10">
 
-            <div class="row mb-2 border-bottom pb-3">
+            <div class="row border-bottom mb-2 pb-2 mx-1">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    @includeIf('_success')
+                    @includeIf('_success')                    
                 </div>
                 <div class="col-md-3 text-end">
-                    <a href="{{ route('companies.create') }}" class="btn btn-sm btn-secondary">+ Registrar nova empresa +</a>
+                    <a wire:navigate href="{{ route('companies.create') }}" class="btn btn-sm btn-secondary">+ Registrar nova empresa +</a>
                 </div>
             </div>
 
@@ -56,6 +56,14 @@
 @push('_js')
 <script src="{{ asset('plugins/simple-datatables/umd/simple-datatables.js') }}"></script>
 <script src="{{ asset('plugins/simple/simple-datatables.js') }}"></script>
+<script type="module">
+    $(function(){
+        @if(session()->has('success'))
+            console.log('success');
+            removeAlert();
+        @endif
+    })
+</script>
 {{-- <script type="module">
     $(function(){
 

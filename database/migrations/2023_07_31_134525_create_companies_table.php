@@ -23,9 +23,12 @@ return new class extends Migration
             $table->string('neighborhood')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->enum('status', ['ACTIVE','INACTIVE'])->default('ACTIVE');
+            $table->enum('status', ['ACTIVE','INACTIVE', 'PENDING PAYMENT'])->default('ACTIVE');
             $table->unsignedBigInteger('company_id')->nullable();
             $table->uuid('code')->default(DB::raw('(uuid())'));
+            $table->string('email')->nullable();
+            $table->string('due_date')->nullable();
+            $table->unsignedBigInteger('owner')->nullable();
             $table->unsignedBigInteger('added_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();

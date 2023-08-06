@@ -29,10 +29,8 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
       $request['added_by'] = auth()->id();
-
-      // dd($request->all());
+      //dd($request->all());
       $company = Company::where('document', $request->document)->first();
-
 
       if(empty($company)){
         $company = new Company();
@@ -44,19 +42,25 @@ class CompanyController extends Controller
       $company->zipcode = $request->zipcode;
       $company->street = $request->street;
       $company->number = $request->number;
-      // $company->complement = $request->complement;
+      $company->complement = $request->complement;
       $company->neighborhood = $request->neighborhood;
       $company->city = $request->city;
       $company->state = $request->state;
       $company->state = $request->state;
+      $company->email = $request->email;
+      $company->due_date = $request->due_date;
+      $company->owner = Auth::user()->id;
       $company->added_by = Auth::user()->id;
-      if($company->save()){
-          return response()->json([
-              'message' => 'Data Save successfully!',
-              'flag' => 'INSERT',
-          ]);
-      }
-      return redirect(route('companies'))->with('success', 'Empresa registrada com sucesso!');
+      $company->save();
+
+      session()->flash('success', 'Empresa registrada com sucesso!');
+
+      return redirect()->route('companies');
+
+      // return response()->json([
+      //   'redirect'=> route('companies')
+      // ]);
+
     }
 
     public function view(Request $request, Company $comany)

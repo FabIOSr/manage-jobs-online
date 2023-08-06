@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
     @livewireStyles
     @stack('_css')
 </head>
@@ -76,8 +77,10 @@
 
         <main class="py-4">
             @yield('content')
+            {{ $slot ?? '' }}
         </main>
     </div>
+    <script type="module" src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     @livewireScripts
     @stack('_js')
 </body>
