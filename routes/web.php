@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Jobs\CompanyController;
+use App\Http\Controllers\Jobs\ContractypeController;
 use App\Http\Controllers\Jobs\DepartmentController;
 use App\Http\Controllers\Jobs\ExperienceController;
 use App\Http\Controllers\Jobs\OfficeController;
@@ -60,6 +61,14 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::post('/offices', [OfficeController::class, 'store'] )->name('offices.store');
     Route::post('/offices/update/{office}', [OfficeController::class, 'update'] )->name('offices.update');
     Route::post('/offices/delete/{code}', [OfficeController::class, 'delete'] )->name('offices.delete');
+
+    //CONTRACT TYPE
+    Route::get('/contract-type', [ContractypeController::class, 'index'] )->name('contract-types');
+    Route::get('/contract-type/create', [ContractypeController::class, 'create'] )->name('contract-types.create');
+    Route::get('/contract-type/edit/{code}', [ContractypeController::class, 'edit'] )->name('contract-types.edit');
+    Route::post('/contract-type', [ContractypeController::class, 'store'] )->name('contract-types.store');
+    Route::post('/contract-type/update/{contractType}', [ContractypeController::class, 'update'] )->name('contract-types.update');
+    Route::post('/contract-type/delete/{code}', [ContractypeController::class, 'delete'] )->name('contract-types.delete');
 
 });
 
