@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Jobs\CompanyController;
 use App\Http\Controllers\Jobs\ExperienceController;
+use App\Http\Controllers\Jobs\TypeVacancy;
 use App\Http\Middleware\Authenticate;
 use App\Livewire\Jobs\Experiences\Index;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,14 @@ Route::middleware(Authenticate::class)->group(function(){
 
     Route::get('/experience-level',Index::class)->name('experiences');
 
+    //VACANCY TYPE
+    Route::get('/vacancies', [TypeVacancy::class, 'index'] )->name('jobstype');
+    Route::get('/vacancies/create', [TypeVacancy::class, 'create'] )->name('vacancies.create');
+    Route::post('/vacancies', [TypeVacancy::class, 'store'] )->name('vacancies.store');
+    Route::get('/edit/{vacancy}', [TypeVacancy::class, 'edit'] )->name('vacancies.edit');
+    Route::post('/update/{vacancy}', [TypeVacancy::class, 'update'] )->name('vacancies.update');
+    Route::post('/delete/{vacancy}', [TypeVacancy::class, 'delete'] )->name('vacancies.delete');
+
 });
 
 // Route::get('/experience-level',[ExperienceController::class, 'index'])->name('experiences');
@@ -43,9 +52,7 @@ Route::get('/contract-types', function () {
     return view('contract/index');
 })->name('contracttype');
 
-Route::get('/job-types', function () {
-    return view('jobstype/index');
-})->name('jobstype');
+
 
 Route::get('/job-requested', function () {
     return view('jobsrequested/index');
