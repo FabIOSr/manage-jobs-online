@@ -9,5 +9,5 @@ class Experience extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['experience','status','added_by','updated_by'];
+    protected $fillable = ['name','status', 'code','added_by','updated_by'];
 }

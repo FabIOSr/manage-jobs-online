@@ -49,7 +49,7 @@ Route::middleware(Authenticate::class)->group(function(){
     //DEPARTMENT
     Route::get('/departments', [DepartmentController::class, 'index'] )->name('departments');
     Route::get('/departments/create', [DepartmentController::class, 'create'] )->name('departments.create');
-    Route::get('/departmenst/edit/{code}', [DepartmentController::class, 'edit'] )->name('departments.edit');
+    Route::get('/departments/edit/{code}', [DepartmentController::class, 'edit'] )->name('departments.edit');
     Route::post('/departments', [DepartmentController::class, 'store'] )->name('departments.store');
     Route::post('/departments/update/{department}', [DepartmentController::class, 'update'] )->name('departments.update');
     Route::post('/departments/delete/{code}', [DepartmentController::class, 'delete'] )->name('departments.delete');
@@ -70,10 +70,17 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::post('/contract-type/update/{contractType}', [ContractypeController::class, 'update'] )->name('contract-types.update');
     Route::post('/contract-type/delete/{code}', [ContractypeController::class, 'delete'] )->name('contract-types.delete');
 
+    //EXPERIENCE
+    Route::get('/experiences', [ExperienceController::class, 'index'] )->name('experiences');
+    Route::get('/experiences/create', [ExperienceController::class, 'create'] )->name('experiences.create');
+    Route::get('/departmenst/edit/{code}', [ExperienceController::class, 'edit'] )->name('experiences.edit');
+    Route::post('/experiences', [ExperienceController::class, 'store'] )->name('experiences.store');
+    Route::post('/experiences/update/{experience}', [ExperienceController::class, 'update'] )->name('experiences.update');
+    Route::post('/experiences/delete/{code}', [ExperienceController::class, 'delete'] )->name('experiences.delete');
+
 });
 
-// Route::get('/experience-level',[ExperienceController::class, 'index'])->name('experiences');
-Route::get('/experience-level',Index::class)->name('experiences');
+
 
 Route::get('/contract-types', function () {
     return view('contract/index');
