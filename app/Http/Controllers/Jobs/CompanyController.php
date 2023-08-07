@@ -13,25 +13,32 @@ class CompanyController extends Controller
     public function index()
     {
       $data['companies'] = Company::all();
+<<<<<<< HEAD
       return view('jobs/company/index', $data);
+=======
+      return view('jobs.company.index', $data);
+>>>>>>> dcd68e7 (create company)
     }
-
-    public function getAllCompany(){
-
-      return response(Company::latest()->get());
-  }
 
     public function create()
     {
+<<<<<<< HEAD
       return view('jobs/company/create');
+=======
+      return view('jobs.company.create');
+>>>>>>> dcd68e7 (create company)
     }
 
     public function store(CompanyRequest $request)
     {
       $request['added_by'] = auth()->id();
+<<<<<<< HEAD
       
       //dd($request->all());
       
+=======
+
+>>>>>>> dcd68e7 (create company)
       $company = new Company();
 
       $company->document = $request->document;
@@ -57,18 +64,37 @@ class CompanyController extends Controller
 
     }
 
-    public function view(Request $request, Company $comany)
+    public function edit(Request $request, $code)
     {
-      return view('jobs/view', compact('company'));
+        $department = Company::where('code', $code)->first();
+
+        return view('jobs.department.edit', compact('department'));
     }
 
-    public function update()
+    public function update(Request $request, Company $department)
     {
-      return view('jobs/update');
+        $data = $request->validate([
+            'name' => 'required|min:2|unique:departments,name,'.$department->id,
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'check'=> 'required'
+        ]);
+
+        $data['updated_by'] = auth()->id();
+
+
+        $department->update($data);
+
+        session()->flash('success', 'departamento atualizado com sucesso!');
+
+        return redirect()->route('departments');
     }
 
-    public function delete()
+    public function delete($code)
     {
-      //delete
+        Company::where('code',$code)->first()->delete();
+
+        session()->flash('success', 'departamento exlcuido com successo!');
+
+        return redirect()->route('departments');
     }
 }

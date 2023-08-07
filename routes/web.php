@@ -7,19 +7,8 @@ use App\Http\Controllers\Jobs\ExperienceController;
 use App\Http\Controllers\Jobs\OfficeController;
 use App\Http\Controllers\Jobs\TypeVacancy;
 use App\Http\Middleware\Authenticate;
-use App\Livewire\Jobs\Experiences\Index;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +16,7 @@ Route::get('/', function () {
 
 Route::middleware(Authenticate::class)->group(function(){
 
+<<<<<<< HEAD
     //COMPANY
     Route::get('/companies', [CompanyController::class, 'index'] )->name('companies');
     Route::get('/companies/create', [CompanyController::class, 'create'] )->name('companies.create');
@@ -47,6 +37,8 @@ Route::middleware(Authenticate::class)->group(function(){
 
     Route::get('/experience-level',Index::class)->name('experiences');
 
+=======
+>>>>>>> dcd68e7 (create company)
     //VACANCY TYPE
     Route::get('/vacancies', [TypeVacancy::class, 'index'] )->name('vacancies');
     Route::get('/vacancies/create', [TypeVacancy::class, 'create'] )->name('vacancies.create');
@@ -62,6 +54,14 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::post('/departments', [DepartmentController::class, 'store'] )->name('departments.store');
     Route::post('/departments/update/{department}', [DepartmentController::class, 'update'] )->name('departments.update');
     Route::post('/departments/delete/{code}', [DepartmentController::class, 'delete'] )->name('departments.delete');
+
+    //COMPANY
+    Route::get('/companies', [CompanyController::class, 'index'] )->name('companies');
+    Route::get('/companies/create', [CompanyController::class, 'create'] )->name('companies.create');
+    Route::get('/departmenst/edit/{code}', [CompanyController::class, 'edit'] )->name('companies.edit');
+    Route::post('/companies', [CompanyController::class, 'store'] )->name('companies.store');
+    Route::post('/companies/update/{company}', [CompanyController::class, 'update'] )->name('companies.update');
+    Route::post('/companies/delete/{code}', [CompanyController::class, 'delete'] )->name('companies.delete');
 
     //OFFICE
     Route::get('/offices', [OfficeController::class, 'index'] )->name('offices');
@@ -88,13 +88,6 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::post('/experiences/delete/{code}', [ExperienceController::class, 'delete'] )->name('experiences.delete');
 
 });
-
-
-
-Route::get('/contract-types', function () {
-    return view('contract/index');
-})->name('contracttype');
-
 
 
 Route::get('/job-requested', function () {

@@ -22,7 +22,11 @@ class CompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
+<<<<<<< HEAD
             'document' => 'required|min:14,'.request()->input('id'),
+=======
+            'document' => 'required|min:14|unique:companies,document,'.request()->input('code'),
+>>>>>>> dcd68e7 (create company)
             'social_name' => 'required',
             'alias_name' => 'required',
             'zipcode' => 'required|min:8',
@@ -30,9 +34,11 @@ class CompanyRequest extends FormRequest
             'city' => 'required',
             'state' => 'required',
             'number' => 'required',
+            'complement' => 'sometimes',
             'neighborhood' => 'required',
             'email' => 'required|email',
-            'due_date' => 'required'
+            'due_date' => 'required',
+            'check' => 'required'
         ];
     }
 }
