@@ -33,7 +33,7 @@ class TypeVacancy extends Controller
 
         session()->flash('success','Tipo de vaga registrada com sucesso.');
 
-        return redirect()->route('jobstype');
+        return redirect()->route('vacancies');
 
     }
     public function edit(Request $request, Vacancy $vacancy)
@@ -55,7 +55,7 @@ class TypeVacancy extends Controller
 
         $vacancy->update($data);
 
-        return redirect()->route('jobstype');
+        return redirect()->route('vacancies');
     }
 
     public function delete(Vacancy $vacancy)
@@ -64,6 +64,6 @@ class TypeVacancy extends Controller
 
         session()->flash('success', 'Tipo de vaga foi excluida com sucesso');
 
-        return redirect()->route('jobstype');
+        return redirect()->route('vacancies');
     }
 }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         @includeIf('layouts.sidebar')
@@ -12,7 +13,7 @@
                     @includeIf('_success')
                 </div>
                 <div class="col-md-3 text-end">
-                    <a href="{{ route('vacancies.create') }}" class="btn btn-sm btn-secondary">Inserir novo tipo vaga +</a>
+                    <a href="{{ route('departments.create') }}" class="btn btn-sm btn-secondary">Registrar novo departamento +</a>
                 </div>
             </div>
 
@@ -21,19 +22,19 @@
                     <thead>
                       <tr class="table-dark">
                         <th scope="col">#</th>
-                        <th scope="col">Tipo de vaga</th>
+                        <th scope="col">Departamento</th>
                         <th scope="col">Status</th>
                         <th scope="col" width="120">Açoes</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($vacancies as $item)
+                      @foreach ($departments as $item)
                       <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $item->vacancy }}</td>
+                        <td>{{ $item->name }}</td>
                         <td>{{ $item->status }}</td>
                         <td>
-                            <a href="{{ route('vacancies.edit', $item->id) }}"
+                            <a href="{{ route('departments.edit', $item->code) }}"
                                 class="btn btn-sm btn-primary py-0 px-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" fill="currentColor"
@@ -45,14 +46,11 @@
                                 </svg>
                             </a>
 
-                            <form id="delete-{{ $item->id }}" action="{{ route('vacancies.delete', $item->id) }}" method="post" class="d-none">
-                                @csrf
-                            </form>
+                            <form id="delete-{{ $item->code }}" action="{{ route('departments.delete', $item->code) }}" method="POST" class="d-none">@csrf</form>
                             <button type="button"
+                                onclick="confirm('{{ $item->code }}')"
                                 class="btn btn-sm btn-danger py-0 px-2 d-inline"
-                                data-bs-toggle="modal"
-                                onclick="confirm({{ $item->id }})"                              
-                                data-bs-target="#">
+                                >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" fill="currentColor"
                                     class="bi bi-trash3-fill" viewBox="0 0 12 12">
@@ -61,14 +59,10 @@
                                 </svg>
                             </button>
                         </td>
-                      </tr> 
-                      @endforeach                    
+                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
-
-                  <div class="float-end">
-                    {{ $vacancies->links('pagination::bootstrap-5') }}
-                  </div>
             </div>
         </div>
     </div>

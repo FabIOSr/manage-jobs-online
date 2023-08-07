@@ -12,7 +12,7 @@
                         @includeIf('_success')
                     </div>
                     <div class="col-md-4 text-end">
-                        <a href="{{ route('jobstype') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
+                        <a href="{{ route('vacancies') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
                     </div>
                 </div>
         

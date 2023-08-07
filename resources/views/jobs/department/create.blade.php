@@ -12,18 +12,18 @@
                         @includeIf('_success')
                     </div>
                     <div class="col-md-4 text-end">
-                        <a href="{{ route('vacancies') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
+                        <a href="{{ route('departments') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
                     </div>
                 </div>
         
                 <div class="row justify-content-start g-3">
                     <div class="col-md-8 ps-3">
-                        <form action="{{ route('vacancies.store') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('departments.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row g-2">                                
                                 <div class="col-md-9">
-                                    <label for="vacancy" class="form-label mb-0">Tipo de vaga</label>
-                                    <input name="vacancy" class="form-control form-control-sm" value="{{ old('vacancy') }}" autocomplete="off" autofocus>
+                                    <label for="name" class="form-label mb-0">Nome departamento</label>
+                                    <input name="name" class="form-control form-control-sm" value="{{ old('name') }}" autocomplete="off" autofocus>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="status" class="form-label mb-0">Status</label>

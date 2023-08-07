@@ -12,25 +12,25 @@
                         @includeIf('_success')
                     </div>
                     <div class="col-md-4 text-end">
-                        <a href="{{ route('vacancies') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
+                        <a href="{{ route('departments') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
                     </div>
                 </div>
         
                 <div class="row justify-content-start g-3">
                     <div class="col-md-8 ps-3">
-                        <form action="{{ route('vacancies.store') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('departments.update', $department->id) }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row g-2">                                
                                 <div class="col-md-9">
-                                    <label for="vacancy" class="form-label mb-0">Tipo de vaga</label>
-                                    <input name="vacancy" class="form-control form-control-sm" value="{{ old('vacancy') }}" autocomplete="off" autofocus>
+                                    <label for="name" class="form-label mb-0">Tipo de vaga</label>
+                                    <input name="name" class="form-control form-control-sm" value="{{ old('name', $department->name) }}" autocomplete="off" autofocus>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="status" class="form-label mb-0">Status</label>
                                     <select name="status" class="form-select form-select-sm">
                                       <option value="choose" selected>...</option>
-                                      <option value="ACTIVE" @if(old('status') == 'ACTIVE') selected @endif>ATIVO</option>
-                                      <option value="INACTIVE" @if(old('status') == 'INACTIVE') selected @endif>INATIVO</option>
+                                      <option value="ACTIVE" @if(old('status', $department->status) == 'ACTIVE') selected @endif>ATIVO</option>
+                                      <option value="INACTIVE" @if(old('status', $department->status) == 'INACTIVE') selected @endif>INATIVO</option>
                                     </select>
                                   </div>
                                 <div class="col-12">
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-12">                                
                                     <button type="submit" class="btn btn-primary btn-sm float-end">
-                                        Salvar Registro
+                                        Atualizar Registro
                                     </button>
                                   </div>
                             </div>
@@ -57,8 +57,7 @@
                         @if ($errors->any())
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="text-danger fw-bold">Ops. Atenção aos seguintes campos!</h5>
-        
+                                <h5 class="text-danger fw-bold">Ops. Atenção aos seguintes campos!</h5>        
                                   <ol>
                                     @foreach ($errors->all() as $error)
                                     <li class="text-danger">{{ $error }}</li>
