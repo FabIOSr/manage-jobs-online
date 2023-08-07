@@ -3,6 +3,7 @@
 use App\Http\Controllers\Jobs\CompanyController;
 use App\Http\Controllers\Jobs\DepartmentController;
 use App\Http\Controllers\Jobs\ExperienceController;
+use App\Http\Controllers\Jobs\OfficeController;
 use App\Http\Controllers\Jobs\TypeVacancy;
 use App\Http\Middleware\Authenticate;
 use App\Livewire\Jobs\Experiences\Index;
@@ -40,17 +41,25 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::get('/vacancies', [TypeVacancy::class, 'index'] )->name('vacancies');
     Route::get('/vacancies/create', [TypeVacancy::class, 'create'] )->name('vacancies.create');
     Route::post('/vacancies', [TypeVacancy::class, 'store'] )->name('vacancies.store');
-    Route::get('/edit/{vacancy}', [TypeVacancy::class, 'edit'] )->name('vacancies.edit');
-    Route::post('/update/{vacancy}', [TypeVacancy::class, 'update'] )->name('vacancies.update');
-    Route::post('/delete/{vacancy}', [TypeVacancy::class, 'delete'] )->name('vacancies.delete');
+    Route::get('/vacancies/edit/{vacancy}', [TypeVacancy::class, 'edit'] )->name('vacancies.edit');
+    Route::post('/vacancies/update/{vacancy}', [TypeVacancy::class, 'update'] )->name('vacancies.update');
+    Route::post('/vacancies/delete/{vacancy}', [TypeVacancy::class, 'delete'] )->name('vacancies.delete');
 
     //DEPARTMENT
     Route::get('/departments', [DepartmentController::class, 'index'] )->name('departments');
     Route::get('/departments/create', [DepartmentController::class, 'create'] )->name('departments.create');
     Route::get('/departmenst/edit/{code}', [DepartmentController::class, 'edit'] )->name('departments.edit');
     Route::post('/departments', [DepartmentController::class, 'store'] )->name('departments.store');
-    Route::post('/departmenst/update/{department}', [DepartmentController::class, 'update'] )->name('departments.update');
-    Route::post('/departmenst/delete/{code}', [DepartmentController::class, 'delete'] )->name('departments.delete');
+    Route::post('/departments/update/{department}', [DepartmentController::class, 'update'] )->name('departments.update');
+    Route::post('/departments/delete/{code}', [DepartmentController::class, 'delete'] )->name('departments.delete');
+
+    //OFFICE
+    Route::get('/offices', [OfficeController::class, 'index'] )->name('offices');
+    Route::get('/offices/create', [OfficeController::class, 'create'] )->name('offices.create');
+    Route::get('/offices/edit/{code}', [OfficeController::class, 'edit'] )->name('offices.edit');
+    Route::post('/offices', [OfficeController::class, 'store'] )->name('offices.store');
+    Route::post('/offices/update/{office}', [OfficeController::class, 'update'] )->name('offices.update');
+    Route::post('/offices/delete/{code}', [OfficeController::class, 'delete'] )->name('offices.delete');
 
 });
 
@@ -71,9 +80,6 @@ Route::get('/reports', function () {
     return view('reports/index');
 })->name('reports');
 
-Route::get('/offices', function () {
-    return view('offices/index');
-})->name('offices');
 
 Auth::routes();
 
