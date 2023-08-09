@@ -29,12 +29,10 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
       $request['added_by'] = auth()->id();
+      
       //dd($request->all());
-      $company = Company::where('document', $request->document)->first();
-
-      if(empty($company)){
-        $company = new Company();
-      }
+      
+      $company = new Company();
 
       $company->document = $request->document;
       $company->social_name = $request->social_name;
@@ -56,10 +54,6 @@ class CompanyController extends Controller
       session()->flash('success', 'Empresa registrada com sucesso!');
 
       return redirect()->route('companies');
-
-      // return response()->json([
-      //   'redirect'=> route('companies')
-      // ]);
 
     }
 

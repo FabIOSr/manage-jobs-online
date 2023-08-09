@@ -9,16 +9,17 @@
                 <div class="row border-bottom mb-2 pb-2 mx-1">
                     <div class="col-md-3"></div>
                     <div class="col-md-6">
-                        @includeIf('_success')                    
+                        @includeIf('_success')
                     </div>
                     <div class="col-md-3 text-end pe-0">
-                        <a wire:navigate href="{{ route('companies') }}" class="btn btn-sm btn-secondary">+ Listar  Empresas</a>
+                        <a wire:navigate href="{{ route('companies') }}" class="btn btn-sm btn-secondary">+ Listar
+                            Empresas</a>
                     </div>
                 </div>
 
                 <div class="row justify-content-start g-3">
                     <div class="col-md-8 ps-3">
-                        <form method="POST" action="{{ route('companies.store') }}" autocomplete="off">
+                        <form id="company" method="POST" action="{{ route('companies.store') }}" autocomplete="off">
                             @csrf
                             <div class="row g-2">
                                 <div class="col-md-4">
@@ -115,8 +116,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-sm float-end"
-                                        wire:loading.attr="disabled">
+                                    <button type="submit" class="btn btn-primary btn-sm float-end">
                                         <span wire:loading class="spinner-border spinner-border-sm" role="status"
                                             aria-hidden="true"></span>
                                         Salvar Registro
@@ -147,3 +147,132 @@
         </div>
     </div>
 @endsection
+
+@push('_js')
+    <script type="module">
+        $(function() {
+            var document = $('input[name="document"]');
+            var social_name = $('input[name="social_name"]');
+            var alias_name = $('input[name="alias_name"]');
+            var zipcode = $('input[name="zipcode"]');
+            var street = $('input[name="street"]');
+            var complement = $('input[name="complement"]');
+            var number = $('input[name="number"]');
+            var neighborhood = $('input[name="neighborhood"]');
+            var city = $('input[name="city"]');
+            var state = $('input[name="state"]');
+            var email = $('input[name="email"]');
+            var due_date = $('select[name="due_date"]');
+            var check = $('.form-check-input').is(':checked');
+            var url;
+            var zip;
+
+            function clearFields(){
+                street.val('');
+                complement.val('');
+                state.val('');
+                city.val('');
+                neighborhood.val('');
+
+            }
+
+            function searchZipcode(url){
+                $.getJSON(url , function (data) {
+
+                    if (!("erro" in data)) {
+                        street.val(data.logradouro);
+                        complement.val(data.complemento);
+                        neighborhood.val(data.bairro);
+                        city.val(data.localidade);
+                        state.val(data.uf);
+                        //number.trigger('focus')
+                    } else {
+                        zipcode.trigger('focus');
+                        alert("CEP não encontrado.");
+                        zipcode.val('');
+                        clearFields();
+                    }
+                });
+            }
+
+            $('input[name="zipcode"]').blur(function(){
+                
+                zip = $(this).val().replace(/[^0-9]+/g,'');
+                url = `https://viacep.com.br/ws/${zip}/json/`;
+                
+                clearFields();
+
+                searchZipcode(url)
+                
+            });
+
+            $('#company').submit(function(e) {                
+
+
+                if (document.val() == '' || document.val().replace(/[^0-9]+/g,'').length < 14) {
+                    document.trigger("focus");
+                    return false
+                }
+
+                if (social_name.val() == '') {
+                    social_name.trigger("focus");
+                    return false
+                }
+
+                if (alias_name.val() == '') {
+                    alias_name.trigger("focus");
+                    return false
+                }
+
+                if (zipcode.val() == '' || zipcode.val().replace(/[^0-9]+/g,'').length !=8) {
+                    zipcode.trigger("focus");
+                    return false
+                }else{
+                    zip = zipcode.val().replace(/[^0-9]+/g,'');
+                    url = `https://viacep.com.br/ws/${zip}/json/`;
+                    searchZipcode(url)
+                }
+
+                if (street.val() == '') {
+                    street.trigger("focus");
+                    return false
+                }
+
+                if (number.val() == '') {
+                    number.trigger("focus");
+                    return false
+                }
+
+                if (neighborhood.val() == '') {
+                    neighborhood.trigger("focus");
+                    return false
+                }
+
+                if (city.val() == '') {
+                    city.trigger("focus");
+                    return false
+                }
+
+                if (state.val() == '') {
+                    state.trigger("focus");
+                    return false
+                }
+
+                if (email.val() == '') {
+                    email.trigger("focus");
+                    return false
+                }
+
+                if (due_date.val() == '') {
+                    due_date.trigger("focus");
+                    return false
+                }
+
+                if (!!check) {
+                    $('.form-check-input').trigger("focus");
+                    return false
+                }               
+            });
+        });
+    </script>
+@endpush
