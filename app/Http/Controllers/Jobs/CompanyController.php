@@ -13,7 +13,7 @@ class CompanyController extends Controller
     public function index()
     {
       $data['companies'] = Company::all();
-      return view('jobs/index', $data);
+      return view('jobs/company/index', $data);
     }
 
     public function getAllCompany(){
@@ -23,7 +23,7 @@ class CompanyController extends Controller
 
     public function create()
     {
-      return view('jobs/create');
+      return view('jobs/company/create');
     }
 
     public function store(CompanyRequest $request)

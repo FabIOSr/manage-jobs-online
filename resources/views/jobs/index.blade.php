@@ -11,7 +11,7 @@
                 <div class="col-md-6">
                     @includeIf('_success')                    
                 </div>
-                <div class="col-md-3 text-end">
+                <div class="col-md-3 text-end pe-0">
                     <a wire:navigate href="{{ route('companies.create') }}" class="btn btn-sm btn-secondary">+ Registrar nova empresa +</a>
                 </div>
             </div>

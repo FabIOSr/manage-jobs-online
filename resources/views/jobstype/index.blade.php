@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center g-2">
         @includeIf('layouts.sidebar')
         <div class="col-md-10">
 
-            <div class="row mb-2 border-bottom pb-3">
+            <div class="row border-bottom mb-2 pb-2 mx-1">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <span class="alert alert-success py-2" id="alert" role="alert">

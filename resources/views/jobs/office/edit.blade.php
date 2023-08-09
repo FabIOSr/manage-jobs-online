@@ -7,11 +7,11 @@
             <div class="col-md-10">
                 
                 <div class="row border-bottom mb-2 pb-2 mx-1">
-                    <div class="col-md-2"></div>
+                    <div class="col-md-3"></div>
                     <div class="col-md-6">
                         @includeIf('_success')
                     </div>
-                    <div class="col-md-4 text-end">
+                    <div class="col-md-3 text-end pe-0">
                         <a href="{{ route('offices') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
                     </div>
                 </div>

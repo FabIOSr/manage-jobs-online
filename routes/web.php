@@ -27,10 +27,19 @@ Route::get('/', function () {
 
 Route::middleware(Authenticate::class)->group(function(){
 
-    Route::get('companies', [CompanyController::class, 'index'])->name('companies');
-    Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
-    Route::get('companies-all', [CompanyController::class, 'getAllCompany'])->name('companies.all');
-    Route::post('companies', [CompanyController::class, 'store'])->name('companies.store');
+    //COMPANY
+    Route::get('/companies', [CompanyController::class, 'index'] )->name('companies');
+    Route::get('/companies/create', [CompanyController::class, 'create'] )->name('companies.create');
+    Route::get('/companies/edit/{code}', [CompanyController::class, 'edit'] )->name('companies.edit');
+    Route::post('/companies', [CompanyController::class, 'store'] )->name('companies.store');
+    Route::post('/companies/update/{company}', [CompanyController::class, 'update'] )->name('companies.update');
+    Route::post('/companies/delete/{code}', [CompanyController::class, 'delete'] )->name('companies.delete');
+
+
+    // Route::get('companies', [CompanyController::class, 'index'])->name('companies');
+    // Route::get('companies/create', [CompanyController::class, 'create'])->name('companies.create');
+    // Route::get('companies-all', [CompanyController::class, 'getAllCompany'])->name('companies.all');
+    // Route::post('companies', [CompanyController::class, 'store'])->name('companies.store');
 
     //EXPERIENCES
     Route::post('/experiences/store', [ExperienceController::class,'store'])->name('experiences.store');
