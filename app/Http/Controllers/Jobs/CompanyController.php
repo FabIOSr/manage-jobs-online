@@ -13,32 +13,18 @@ class CompanyController extends Controller
     public function index()
     {
       $data['companies'] = Company::all();
-<<<<<<< HEAD
-      return view('jobs/company/index', $data);
-=======
       return view('jobs.company.index', $data);
->>>>>>> dcd68e7 (create company)
     }
 
     public function create()
     {
-<<<<<<< HEAD
-      return view('jobs/company/create');
-=======
       return view('jobs.company.create');
->>>>>>> dcd68e7 (create company)
     }
 
     public function store(CompanyRequest $request)
     {
       $request['added_by'] = auth()->id();
-<<<<<<< HEAD
-      
-      //dd($request->all());
-      
-=======
 
->>>>>>> dcd68e7 (create company)
       $company = new Company();
 
       $company->document = $request->document;

@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< HEAD
-=======
 
->>>>>>> dcd68e7 (create company)
 <div class="container">
     <div class="row justify-content-center g-2">
         @includeIf('layouts.sidebar')
@@ -15,13 +12,8 @@
                 <div class="col-md-6">
                     @includeIf('_success')                    
                 </div>
-<<<<<<< HEAD
-                <div class="col-md-3 text-end pe-0">
-                    <a wire:navigate href="{{ route('companies.create') }}" class="btn btn-sm btn-secondary">+ Inserir  Empresa</a>
-=======
                 <div class="col-md-3 text-end">
                     <a wire:navigate href="{{ route('companies.create') }}" class="btn btn-sm btn-secondary">+ Inserir nova empresa +</a>
->>>>>>> dcd68e7 (create company)
                 </div>
             </div>
 
@@ -34,10 +26,7 @@
                             <th scope="col">Razão Social</th>
                             <th scope="col">Nº Solicitações</th>
                             <th scope="col">Status</th>
-<<<<<<< HEAD
-=======
                             <th scope="col">Opções</th>
->>>>>>> dcd68e7 (create company)
                         </tr>
                     </thead>
                     <tbody id="tbody">
@@ -48,8 +37,6 @@
                             <td>{{ $item->social_name }}</td>
                             <td></td>
                             <td class="text-secondary">{{ $item->status }}</td>
-<<<<<<< HEAD
-=======
                             <td>
                                 <a href="#" type="button"
                                     class="btn btn-success btn-sm py-0" data-bs-toggle="modal"
@@ -86,7 +73,6 @@
                                     </svg>
                                 </button>
                             </td>
->>>>>>> dcd68e7 (create company)
                         </tr>
                         @endforeach
                     </tbody>
@@ -95,8 +81,5 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> dcd68e7 (create company)
 @endsection

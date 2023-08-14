@@ -22,15 +22,7 @@ class CompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-<<<<<<< HEAD
-<<<<<<< HEAD
-            'document' => 'required|min:14,'.request()->input('id'),
-=======
-            'document' => 'required|min:14|unique:companies,document,'.request()->input('code'),
->>>>>>> dcd68e7 (create company)
-=======
             'document' => 'required|min:14|unique:companies,document,'.request()->input('id'),
->>>>>>> 5ac1d18 (cpmany update)
             'social_name' => 'required',
             'alias_name' => 'required',
             'zipcode' => 'required|min:8',
