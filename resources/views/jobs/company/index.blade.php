@@ -60,7 +60,7 @@
                                     </svg>
                                 </a>
     
-                                <form id="delete-{{ $item->code }}" action="{{ route('companies', $item->code) }}" method="POST" class="d-none">@csrf</form>
+                                <form id="delete-{{ $item->code }}" action="{{ route('companies.delete', $item->code) }}" method="POST" class="d-none">@csrf @method('DELETE')</form>
                                 <button type="button"
                                     onclick="confirm('{{ $item->code }}')"
                                     class="btn btn-sm btn-danger py-0 px-2 d-inline"

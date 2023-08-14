@@ -6,6 +6,7 @@ use App\Http\Controllers\Jobs\DepartmentController;
 use App\Http\Controllers\Jobs\ExperienceController;
 use App\Http\Controllers\Jobs\OfficeController;
 use App\Http\Controllers\Jobs\TypeVacancy;
+use App\Http\Controllers\Jobs\VagasSolicitadaController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +39,7 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::get('/companies/edit/{code}', [CompanyController::class, 'edit'] )->name('companies.edit');
     Route::post('/companies', [CompanyController::class, 'store'] )->name('companies.store');
     Route::put('/companies/update/{company}', [CompanyController::class, 'update'] )->name('companies.update');
-    Route::post('/companies/delete/{code}', [CompanyController::class, 'delete'] )->name('companies.delete');
+    Route::delete('/companies/delete/{code}', [CompanyController::class, 'delete'] )->name('companies.delete');
 
     //OFFICE
     Route::get('/offices', [OfficeController::class, 'index'] )->name('offices');
@@ -64,12 +65,11 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::post('/experiences/update/{experience}', [ExperienceController::class, 'update'] )->name('experiences.update');
     Route::post('/experiences/delete/{code}', [ExperienceController::class, 'delete'] )->name('experiences.delete');
 
+    //VAGAS SOLICITADAS
+    Route::get('/vagas/solicitadas', [VagasSolicitadaController::class, 'index'])->name('vagas.solicitadas');
 });
 
 
-Route::get('/job-requested', function () {
-    return view('jobsrequested/index');
-})->name('jobsrequested');
 
 Route::get('/reports', function () {
     return view('reports/index');

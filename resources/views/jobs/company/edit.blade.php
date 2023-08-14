@@ -123,3 +123,97 @@
     </div>
 </div>
 @endsection
+
+@push('_js')
+    <script type="module">
+        $(document).ready(function(){
+            $("input[name=zipcode]").blur(function(){
+                var cep = $(this).val().replace(/[^0-9]/, '');
+                if(cep.length == 8){
+                    var url = 'https://viacep.com.br/ws/'+cep+'/json/';
+                    $.ajax({
+                            url: url,
+                            dataType: 'jsonp',
+                            crossDomain: true,
+                            contentType: "application/json",
+                            success : function(json){
+                                if(json.logradouro){
+                                    $("input[name=street]").val(json.logradouro);
+                                    $("input[name=neighborhood]").val(json.bairro);
+                                    $("input[name=city]").val(json.localidade);
+                                    $("input[name=state]").val(json.uf);
+                                    $('input[name="number"]').focus();
+                                }else{
+                                    toastr.error('CEP não encontrado');
+                                }
+                            },
+                            error:function(xhr, status, error){
+                                console.log(response);
+                            }
+                    });
+                }                   
+            });
+
+            $('#company').submit(function(e){
+
+                if($('input[name="document"]').val()=='' || $('input[name="document"]').val().length < 14){
+                    $('input[name="document"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="social_name"]').val()==''){
+                    $('input[name="social_name"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="alias_name"]').val()==''){
+                    $('input[name="alias_name"]').trigger( "focus" ); 
+                    return false
+                }
+
+                var zip = $('input[name="zipcode"]').val();
+                zip.replace(/[^0-9]+/g,'');
+                if($('input[name="zipcode"]').val()=='' || zip.length < 8){
+                    $('input[name="zipcode"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="street"]').val()=='') {
+                    $('input[name="street"]').trigger( "focus" ); 
+                    return false
+                }
+                
+                if($('input[name="number"]').val()=='') {
+                    $('input[name="number"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="neighborhood"]').val()=='') {
+                    $('input[name="neighborhood"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="city"]').val()=='') {
+                    $('input[name="city"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="state"]').val()=='') {
+                    $('input[name="state"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('input[name="email"]').val()=='') {
+                    $('input[name="email"]').trigger( "focus" ); 
+                    return false
+                }
+
+                if($('select[name="due_date"]').val()=='') {
+                    $('select[name="due_date"]').trigger( "focus" ); 
+                    return false
+                }
+            })
+            
+        });
+    </script>
+@endpush

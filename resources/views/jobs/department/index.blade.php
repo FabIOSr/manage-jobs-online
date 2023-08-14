@@ -63,6 +63,9 @@
                       @endforeach
                     </tbody>
                   </table>
+                  <div class="float-end">
+                    {{ $departments->links() }}
+                </div>
             </div>
         </div>
     </div>

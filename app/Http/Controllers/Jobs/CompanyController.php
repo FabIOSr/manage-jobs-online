@@ -44,7 +44,7 @@ class CompanyController extends Controller
       $company->added_by = Auth::user()->id;
       $company->save();
 
-      session()->flash('success', 'Empresa registrada com sucesso!');
+      session()->flash('success', 'Registro inserido com sucesso!');
 
       return redirect()->route('companies');
 
@@ -73,8 +73,8 @@ class CompanyController extends Controller
     {
         Company::where('code',$code)->first()->delete();
 
-        session()->flash('success', 'departamento exlcuido com successo!');
+        session()->flash('success', 'Registro foi removido com successo!');
 
-        return redirect()->route('departments');
+        return redirect()->route('companies');
     }
 }

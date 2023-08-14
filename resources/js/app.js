@@ -20,6 +20,7 @@ confirm = (id)=>{
         }
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log(id);
                 $('#delete-'+id).submit();
             }
         })

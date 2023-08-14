@@ -20,11 +20,8 @@ return new class extends Migration
             $table->string('zipcode')->nullable();
             $table->string('street')->nullable();
             $table->string('number')->nullable();
-<<<<<<< HEAD
             $table->string('complement ')->nullable();
-=======
             $table->string('complement')->nullable();
->>>>>>> dcd68e7 (create company)
             $table->string('neighborhood')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
