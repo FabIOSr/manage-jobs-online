@@ -64,29 +64,23 @@ class CompanyController extends Controller
 
     }
 
-    public function edit(Request $request, $code)
+    public function edit($code)
     {
-        $department = Company::where('code', $code)->first();
+        $data['company'] = Company::where('code', $code)->first();
 
-        return view('jobs.department.edit', compact('department'));
+        return view('jobs.company.edit', $data);
     }
 
-    public function update(Request $request, Company $department)
+    public function update(CompanyRequest $request, Company $company)
     {
-        $data = $request->validate([
-            'name' => 'required|min:2|unique:departments,name,'.$department->id,
-            'status' => 'required|in:ACTIVE,INACTIVE',
-            'check'=> 'required'
-        ]);
-
-        $data['updated_by'] = auth()->id();
+        $request['updated_by'] = auth()->id();
 
 
-        $department->update($data);
+        $company->update($request->except('_token'));
 
-        session()->flash('success', 'departamento atualizado com sucesso!');
+        session()->flash('success', 'Registro atualizado com sucesso!');
 
-        return redirect()->route('departments');
+        return redirect()->route('companies');
     }
 
     public function delete($code)

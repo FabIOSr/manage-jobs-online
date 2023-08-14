@@ -58,9 +58,9 @@ Route::middleware(Authenticate::class)->group(function(){
     //COMPANY
     Route::get('/companies', [CompanyController::class, 'index'] )->name('companies');
     Route::get('/companies/create', [CompanyController::class, 'create'] )->name('companies.create');
-    Route::get('/departmenst/edit/{code}', [CompanyController::class, 'edit'] )->name('companies.edit');
+    Route::get('/companies/edit/{code}', [CompanyController::class, 'edit'] )->name('companies.edit');
     Route::post('/companies', [CompanyController::class, 'store'] )->name('companies.store');
-    Route::post('/companies/update/{company}', [CompanyController::class, 'update'] )->name('companies.update');
+    Route::put('/companies/update/{company}', [CompanyController::class, 'update'] )->name('companies.update');
     Route::post('/companies/delete/{code}', [CompanyController::class, 'delete'] )->name('companies.delete');
 
     //OFFICE
