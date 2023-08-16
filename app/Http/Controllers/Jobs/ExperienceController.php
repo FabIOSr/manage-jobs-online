@@ -21,17 +21,11 @@ class ExperienceController extends Controller
         return view('jobs.experience.create');
     }
 
-    public function store(Request $request)
+    public function store(ExperienceResquest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|min:2|unique:experiences,name',
-            'status' => 'required|in:ACTIVE,INACTIVE',
-            'check'=> 'required'
-        ]);
+        $request['added_by'] = auth()->id();
 
-        $data['added_by'] = auth()->id();
-
-        Experience::create($data);
+        Experience::create($request->only(['name','status','added_by']));
 
         session()->flash('success', 'experiência inserido com sucesso!');
 
@@ -45,18 +39,13 @@ class ExperienceController extends Controller
         return view('jobs.experience.edit', compact('experience'));
     }
 
-    public function update(Request $request, Experience $experience)
+    public function update(ExperienceResquest $request, Experience $experience)
     {
-        $data = $request->validate([
-            'name' => 'required|min:2|unique:experiences,name,'.$experience->id,
-            'status' => 'required|in:ACTIVE,INACTIVE',
-            'check'=> 'required'
-        ]);
 
-        $data['updated_by'] = auth()->id();
+        $request['updated_by'] = auth()->id();
 
 
-        $experience->update($data);
+        $experience->update($request->only(['name','status','updated_by']));
 
         session()->flash('success', 'experiência atualizado com sucesso!');
 

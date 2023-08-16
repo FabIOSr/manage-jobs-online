@@ -22,6 +22,7 @@
                             @csrf
                             <div class="row g-2">                                
                                 <div class="col-md-9">
+                                    <input type="hidden" name="id" value="{{ $experience->id }}">
                                     <label for="name" class="form-label mb-0">Tipo de vaga</label>
                                     <input name="name" class="form-control form-control-sm" value="{{ old('name', $experience->name) }}" autocomplete="off" autofocus>
                                 </div>

@@ -12,7 +12,7 @@
                     @includeIf('_success')
                 </div>
                 <div class="col-md-4 text-end">
-                    <a wire:navigate href="{{ route('companies') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
+                    <a wire:navigate href="{{ route('companies') }}" autocomplete="off" class="btn btn-sm btn-secondary"><i class="bi bi-arrow-left"></i>  Voltar para Lista</a>
                 </div>
             </div>
     
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-12">                                
                                 <button type="submit" class="btn btn-primary btn-sm float-end">
-                                    Atualizar Registro
+                                    <i class="bi bi-database-check"></i>  Atualizar Registro
                                 </button>
                               </div>
                         </div>

@@ -22,8 +22,26 @@ class ExperienceResquest extends FormRequest
     public function rules(): array
     {
         return [
-            'experience'=> 'required|min:2|unique:experiences,experience',
-            'status' => 'required|in:ACTIVE,INACTIVE'
+            'name'=> 'required|min:2|unique:experiences,name,' .request()->input('id'),
+            'status' => 'required|in:ACTIVE,INACTIVE',
+            'check'=> 'required'
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'experiência',
+            'check' => 'termo de confirmação'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'required' => 'Campo :attribute é obrigatório',
+            'in' => 'Valor de :attribute é inválido',
+            'unique' => 'Este registro de :attribute já existe'
         ];
     }
 }

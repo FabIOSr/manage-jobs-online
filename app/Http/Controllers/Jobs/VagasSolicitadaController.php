@@ -14,10 +14,10 @@ class VagasSolicitadaController extends Controller
         return view('jobs.vagas_solicitadas.index', $data);
     }
 
-    // public function create()
-    // {
-    //     //
-    // }
+    public function create()
+    {
+        return view('jobs.vagas_solicitadas.create');
+    }
     // public function edit()
     // {
     //     //

@@ -14,7 +14,7 @@
                     </span>
                 </div>
                 <div class="col-md-3 text-end">
-                    <a href="#" class="btn btn-sm btn-secondary">Solicitar vaga +</a>
+                    <a wire:navigate href="{{ route('companies.create') }}" class="btn btn-sm btn-secondary"><i class="bi bi-plus"></i> Solicitar Vaga</a>
                 </div>
             </div>
 
