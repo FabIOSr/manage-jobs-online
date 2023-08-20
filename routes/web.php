@@ -68,6 +68,7 @@ Route::middleware(Authenticate::class)->group(function(){
     //VAGAS SOLICITADAS
     Route::get('/vagas/solicitadas', [VagasSolicitadaController::class, 'index'])->name('vagas.solicitadas');
     Route::get('/vagas/solicitar', [VagasSolicitadaController::class, 'create'])->name('vagas.solicitar');
+    Route::post('/vagas/solicitar', [VagasSolicitadaController::class, 'store'])->name('vagas.store');
 });
 
 
