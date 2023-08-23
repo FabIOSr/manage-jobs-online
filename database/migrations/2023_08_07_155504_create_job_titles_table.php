@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departamento', function (Blueprint $table) {
+        Schema::create('job_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('departamento_nome');
-            $table->enum('status', ['ATIVO','INATIVO'])->default('ATIVO');            
+            $table->string('jobTitle');
+            $table->enum('status', ['ACTIVE','INACTIVE'])->default('ACTIVE');            
             $table->uuid('code')->default(DB::raw('(uuid())'));
-            $table->unsignedBigInteger('proprietario')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('createdBy')->nullable();
+            $table->unsignedBigInteger('updatedBy')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departamento');
+        Schema::dropIfExists('offices');
     }
 };

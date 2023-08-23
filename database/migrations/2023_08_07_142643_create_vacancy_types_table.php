@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vacancies', function (Blueprint $table) {
+        Schema::create('vacancy_types', function (Blueprint $table) {
             $table->id();
-            $table->string('vacancy')->nullable()->unique();
+            $table->string('vacancyName')->nullable()->unique();
             $table->enum('status', ['ACTIVE', "INACTIVE"])->default('ACTIVE');
-            $table->unsignedBigInteger('added_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('createdBy')->nullable();
+            $table->unsignedBigInteger('updatedBy')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vacancies');
+        Schema::dropIfExists('vacancy_types');
     }
 };

@@ -3,7 +3,7 @@
         <a wire:navigate href="{{ route('home') }}" class="list-group-item list-group-item-action {{ request()->routeIs('home') ? 'active': '' }}" aria-current="true">
           <i class="bi bi-speedometer2" style="font-size: 16px;"></i> Painel Home
         </a>
-        <a wire:navigate href="{{ route('offices') }}" class="list-group-item list-group-item-action {{ request()->routeIs('offices*') ? 'active': '' }}"><i class="bi bi-files"></i> Cargos</a>
+        <a wire:navigate href="{{ route('job.titles') }}" class="list-group-item list-group-item-action {{ request()->routeIs('job.titles*') ? 'active': '' }}"><i class="bi bi-files"></i> Cargos</a>
         <a wire:navigate href="{{ route('departments') }}" class="list-group-item list-group-item-action {{ request()->routeIs('departments*') ? 'active': '' }}"><i class="bi bi-files"></i> Departamentos</a>
         <a wire:navigate href="{{ route('experiences') }}" class="list-group-item list-group-item-action {{ request()->routeIs('experiences*') ? 'active': '' }}"><i class="bi bi-file-earmark-person" style="font-size: 14px;"></i> Experiência</a>
         <a href="{{ route('companies') }}" class="list-group-item list-group-item-action {{ request()->routeIs('companies*') ? 'active': '' }}"><i class="bi bi-house"></i> Minhas Empresas</a>

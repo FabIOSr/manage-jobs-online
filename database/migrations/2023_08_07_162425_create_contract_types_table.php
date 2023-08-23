@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('contract_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('contractName');
             $table->enum('status', ['ACTIVE','INACTIVE'])->default('ACTIVE');            
             $table->uuid('code')->default(DB::raw('(uuid())'));
-            $table->unsignedBigInteger('added_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('createdBy')->nullable();
+            $table->unsignedBigInteger('updatedBy')->nullable();
             $table->timestamps();
         });
     }

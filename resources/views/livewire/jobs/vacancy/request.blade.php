@@ -31,7 +31,7 @@
                         <label for="vacancy_type" class="form-label mb-0">Tipo Vaga</label>
                         <select name="vacancy_type" wire:model="vacancy_type" class="form-select form-select-sm">
                             <option value="" selected>---</option>
-                            @foreach (\App\Models\Vacancy::all() as $item)
+                            @foreach (\App\Models\VacancyType::all() as $item)
                                 <option value="{{ $item->id }}">{{ $item->vacancy }}</option>
                             @endforeach
                         </select>
@@ -63,7 +63,7 @@
                         <label for="office" class="form-label mb-0 text-sm">Cargo</label>
                         <select id="office" wire:model="office" class="form-select form-select-sm">
                             <option value="do" selected>...</option>
-                            @forelse (\App\Models\Office::all() as $item)
+                            @forelse (\App\Models\JobTitle::all() as $item)
                                 <option value="{{ $item->id }}">
                                     {{ mb_strtoupper($item->name) }}
                                 </option>

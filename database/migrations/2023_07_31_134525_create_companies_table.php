@@ -15,23 +15,24 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('document')->nullable()->unique();
-            $table->string('alias_name')->nullable();
-            $table->string('social_name')->nullable();
+            $table->string('shortName')->nullable();
+            $table->string('companyName')->nullable();
             $table->string('zipcode')->nullable();
-            $table->string('street')->nullable();
+            $table->string('address')->nullable();
             $table->string('number')->nullable();
             $table->string('complement')->nullable();
-            $table->string('neighborhood')->nullable();
+            $table->string('neighbourhood')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->enum('status', ['ACTIVE','INACTIVE', 'PENDING PAYMENT'])->default('ACTIVE');
-            $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('companyID')->nullable();
             $table->uuid('code')->default(DB::raw('(uuid())'));
             $table->string('email')->nullable();
-            $table->string('due_date')->nullable();
+            $table->string('dueDate')->nullable();
+            $table->string('phone')->nullable();
             $table->unsignedBigInteger('owner')->nullable();
-            $table->unsignedBigInteger('added_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('createdBy')->nullable();
+            $table->unsignedBigInteger('updatedBy')->nullable();
             $table->timestamps();
         });
     }

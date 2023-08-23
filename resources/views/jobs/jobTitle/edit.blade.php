@@ -12,25 +12,25 @@
                         @includeIf('_success')
                     </div>
                     <div class="col-md-3 text-end pe-0">
-                        <a href="{{ route('offices') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
+                        <a href="{{ route('job.titles') }}" autocomplete="off" class="btn btn-sm btn-secondary"> Voltar para Lista</a>
                     </div>
                 </div>
         
                 <div class="row justify-content-start g-3">
                     <div class="col-md-8 ps-3">
-                        <form action="{{ route('offices.update', $office->id) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('job.titles.update', $jobTitle->id) }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row g-2">                                
                                 <div class="col-md-9">
-                                    <label for="name" class="form-label mb-0">Cargo</label>
-                                    <input name="name" class="form-control form-control-sm" value="{{ old('name', $office->name) }}" autocomplete="off" autofocus>
+                                    <label for="jobTitle" class="form-label mb-0">Cargo</label>
+                                    <input name="jobTitle" class="form-control form-control-sm" value="{{ old('jobTitle', $jobTitle->jobTitle) }}" autocomplete="off" autofocus>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="status" class="form-label mb-0">Status</label>
                                     <select name="status" class="form-select form-select-sm">
                                       <option value="choose" selected>...</option>
-                                      <option value="ACTIVE" @if(old('status', $office->status) == 'ACTIVE') selected @endif>ATIVO</option>
-                                      <option value="INACTIVE" @if(old('status', $office->status) == 'INACTIVE') selected @endif>INATIVO</option>
+                                      <option value="ACTIVE" @if(old('status', $jobTitle->status) == 'ACTIVE') selected @endif>ATIVO</option>
+                                      <option value="INACTIVE" @if(old('status', $jobTitle->status) == 'INACTIVE') selected @endif>INATIVO</option>
                                     </select>
                                   </div>
                                 <div class="col-12">

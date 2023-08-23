@@ -12,7 +12,7 @@
                         @includeIf('_success')
                     </div>
                     <div class="col-md-3 text-end pe-0">
-                        <a href="{{ route('offices.create') }}" class="btn btn-sm btn-secondary">Registrar novo cargo +</a>
+                        <a href="{{ route('job.titles.create') }}" class="btn btn-sm btn-secondary">Registrar novo cargo +</a>
                     </div>
                 </div>
 
@@ -27,13 +27,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($offices as $item)
+                            @foreach ($jobTitles as $item)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->jobTitle }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>
-                                        <a href="{{ route('offices.edit', $item->code) }}"
+                                        <a href="{{ route('job.titles.edit', $item->code) }}"
                                             class="btn btn-sm btn-primary py-0 px-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                                 fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 12 12">
@@ -45,7 +45,7 @@
                                         </a>
 
                                         <form id="delete-{{ $item->code }}"
-                                            action="{{ route('offices.delete', $item->code) }}" method="POST"
+                                            action="{{ route('job.titles.delete', $item->code) }}" method="POST"
                                             class="d-none">@csrf</form>
                                         <button type="button" onclick="confirm('{{ $item->code }}')"
                                             class="btn btn-sm btn-danger py-0 px-2 d-inline">
@@ -61,7 +61,7 @@
                         </tbody>
                     </table>
                     <div class="float-end">
-                        {{ $offices->links() }}
+                        {{ $jobTitles->links() }}
                     </div>
                 </div>
             </div>

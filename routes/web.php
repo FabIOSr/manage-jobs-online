@@ -4,10 +4,12 @@ use App\Http\Controllers\Jobs\CompanyController;
 use App\Http\Controllers\Jobs\ContractypeController;
 use App\Http\Controllers\Jobs\DepartmentController;
 use App\Http\Controllers\Jobs\ExperienceController;
+use App\Http\Controllers\Jobs\JobTitleController;
 use App\Http\Controllers\Jobs\OfficeController;
 use App\Http\Controllers\Jobs\TypeVacancy;
 use App\Http\Controllers\Jobs\VagasSolicitadaController;
 use App\Http\Middleware\Authenticate;
+use App\Livewire\Jobs\JobTitle\Index;
 use Illuminate\Support\Facades\Route;
 
 
@@ -42,12 +44,13 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::delete('/companies/delete/{code}', [CompanyController::class, 'delete'] )->name('companies.delete');
 
     //OFFICE
-    Route::get('/offices', [OfficeController::class, 'index'] )->name('offices');
-    Route::get('/offices/create', [OfficeController::class, 'create'] )->name('offices.create');
-    Route::get('/offices/edit/{code}', [OfficeController::class, 'edit'] )->name('offices.edit');
-    Route::post('/offices', [OfficeController::class, 'store'] )->name('offices.store');
-    Route::post('/offices/update/{office}', [OfficeController::class, 'update'] )->name('offices.update');
-    Route::post('/offices/delete/{code}', [OfficeController::class, 'delete'] )->name('offices.delete');
+    // Route::get('/job-titles', Index::class)->name('job.titles');
+    Route::get('/job-title', [JobTitleController::class, 'listJobTitle'] )->name('job.titles');
+    Route::get('/job-title/create', [JobTitleController::class, 'createView'] )->name('job.titles.create');
+    Route::get('/job-title/edit/{code}', [JobTitleController::class, 'editJob'] )->name('job.titles.edit');
+    Route::post('/job-title', [JobTitleController::class, 'saveJob'] )->name('job.titles.store');
+    Route::post('/job-title/update/{office}', [JobTitleController::class, 'update'] )->name('job.titles.update');
+    Route::post('/job-title/delete/{code}', [JobTitleController::class, 'delete'] )->name('job.titles.delete');
 
     //CONTRACT TYPE
     Route::get('/contract-type', [ContractypeController::class, 'index'] )->name('contract-types');
