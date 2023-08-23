@@ -199,6 +199,13 @@
     <script src="{{ asset('plugins/simple/simple-datatables.js') }}"></script>
 
     <script type="module">
+
+        window.Livewire.on('closeCanvas', function(e){
+            toastr.success(e.message)
+            $(e.buttom).trigger('click');
+        });
+
+        
         $(document).ready(function() {
             $(document).on('change', 'select[name="reasonof_request"]', function() {
 

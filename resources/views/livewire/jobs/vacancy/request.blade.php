@@ -18,15 +18,9 @@
                         <label for="contract_type" class="form-label mb-0">Tipo Contrato</label>
                         <select name="contract_type" wire:model="contract_type" class="form-select form-select-sm">
                             <option value="" selected>---</option>
-                            <option value="CLT">
-                                CLT
-                            </option>
-                            <option value="Estágio">
-                                Estágio
-                            </option>
-                            <option value="PJ">
-                                PJ
-                            </option>
+                            @foreach (\App\Models\ContractType::all() as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
                         </select>
                         @error('contract_type')
                             <span class="text-danger">{{ $message }}</span>
@@ -37,15 +31,9 @@
                         <label for="vacancy_type" class="form-label mb-0">Tipo Vaga</label>
                         <select name="vacancy_type" wire:model="vacancy_type" class="form-select form-select-sm">
                             <option value="" selected>---</option>
-                            <option value="Determinado">
-                                Determinado
-                            </option>
-                            <option value="Indeterminado">
-                                Indeterminado
-                            </option>
-                            <option value="Outros">
-                                Outros
-                            </option>
+                            @foreach (\App\Models\Vacancy::all() as $item)
+                                <option value="{{ $item->id }}">{{ $item->vacancy }}</option>
+                            @endforeach
                         </select>
                         @error('vacancy_type')
                             <span class="text-danger">{{ $message }}</span>

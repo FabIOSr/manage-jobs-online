@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Jobs\Vacancy;
 
+use App\Models\VacanciesRequested;
 use Livewire\Component;
 
 class Request extends Component
@@ -22,7 +23,8 @@ class Request extends Component
 
     public function save()
     {
-        $this->validate([
+        
+        $dataValidated = $this->validate([
             'duty' => 'required',
             'scale' => 'required',
             'workload' => 'required',
@@ -41,7 +43,16 @@ class Request extends Component
             'exists'=> 'Dado selecionado não existe em nossa base'
         ]);
 
+        $dataValidated['request_date'] = now();
+        $dataValidated['requester'] = auth()->id();
+
+        VacanciesRequested::create($dataValidated);
+
         //dd('saved');
+        $this->reset();
+        $this->resetValidation();
+        $this->resetErrorBag();
+        $this->dispatch('closeCanvas',message:'Sua requisição foi enviada!', buttom:'.btn-close');
     }
 
     public function render()

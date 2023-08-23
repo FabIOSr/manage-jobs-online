@@ -9,6 +9,12 @@ class VacanciesRequested extends Model
 {
     use HasFactory;
 
+    protected $table = 'vacancies_requested';
+
+    protected $guarded = [];
+
+
+
     protected $work_schedule = [
         '12x36 (180) - 07:00-19:00 - PAR',
         '12x36 (180) - 07:00-19:00 - IMPAR',
